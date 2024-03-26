@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="CoinAPI">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../CoinAPI/out/artifacts/CoinAPI/CoinAPI.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

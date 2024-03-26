@@ -1,0 +1,17 @@
+name: LobbySystem
+version: '${project.version}'
+main: dev.laux.lobbysystem.LobbySystem
+api-version: '1.20'
+author: jonax
+commands:
+  setspawn:
+    description: Setzt den Spawn der Lobby.
+    permission: lobby.setspawn
+  spawn:
+    description: Teleportiert dich zum Spawn der Lobby.
+  createvillager:
+    description: Erstellt den Villager für die Tägliche Belohnung.
+    permission: lobby.setspawn
+  createegg:
+    description: Erstellt ein Easter Egg.
+    permission: lobby.setspawn
