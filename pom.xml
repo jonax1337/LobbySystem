@@ -6,7 +6,7 @@
 
   <groupId>dev.laux</groupId>
   <artifactId>LobbySystem</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.1.0-ALPHA</version>
   <packaging>jar</packaging>
 
   <name>LobbySystem</name>
