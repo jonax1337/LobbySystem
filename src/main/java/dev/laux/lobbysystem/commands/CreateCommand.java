@@ -1,53 +1,52 @@
 package dev.laux.lobbysystem.commands;
 
 import dev.laux.lobbysystem.LobbySystem;
-import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Villager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpawnCommand implements CommandExecutor, TabCompleter {
+public class CreateCommand implements CommandExecutor, TabCompleter {
+
     private final LobbySystem plugin;
 
-    public SpawnCommand(LobbySystem plugin) {
+    public CreateCommand(LobbySystem plugin) {
         this.plugin = plugin;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("§cNur Spieler können diesen Befehl verwenden.");
+            sender.sendMessage("Only players can execute this command.");
             return true;
         }
-
+        // Player
         Player player = (Player) sender;
-        Location spawn = plugin.getLocationManager().getLocation("spawn");
-
-        if (args.length == 1 && args[0].equalsIgnoreCase("remove")) {
-            if (spawn != null) {
-                plugin.getLocationManager().deleteLocation("spawn");
-                sender.sendMessage("§cSpawn wurde entfernt!");
-            } else {
-                player.sendMessage("§cSpawn wurde noch nicht gesetzt!");
-            }
+        // Easter Egg
+        if (args.length == 1 && args[0].equalsIgnoreCase("egg")) {
+            player.sendMessage("§aEaster Egg wird gesetzt!");
+            player.getLocation().getBlock().setType(Material.DRAGON_EGG);
+            player.sendMessage("§aEaster Egg wurde gesetzt!");
+            plugin.getLocationManager().saveLocation("easter_egg", player.getLocation());
             return true;
         }
-
-        if (args.length == 1 && args[0].equalsIgnoreCase("set")) {
-            plugin.getLocationManager().saveLocation("spawn", player.getLocation());
-            player.sendMessage("§aSpawn wurde gesetzt!");
+        // Villager
+        if (args.length == 1 && args[0].equalsIgnoreCase("reward")) {
+            Villager villager = (Villager) player.getWorld().spawnEntity(player.getLocation(), EntityType.VILLAGER);
+            villager.setCustomName("§6Tägliche Belohnung");
+            villager.setCustomNameVisible(true);
+            villager.setProfession(Villager.Profession.CLERIC);
+            villager.setAI(false); // Villager kann sich nicht bewegen
+            player.sendMessage("§aVillager wurde gesetzt!");
+            plugin.getLocationManager().saveLocation("reward", player.getLocation());
             return true;
-        }
-
-        if (spawn != null) {
-            player.teleport(spawn);
-        } else {
-            player.sendMessage("§cSpawn wurde noch nicht gesetzt!");
         }
         return true;
     }
@@ -65,8 +64,8 @@ public class SpawnCommand implements CommandExecutor, TabCompleter {
                 // create list
                 List<String> arrayList = new ArrayList<>();
                 // add commands
-                arrayList.add("set");
-                arrayList.add("remove");
+                arrayList.add("reward");
+                arrayList.add("egg");
                 // return list
                 return arrayList;
             }
@@ -75,4 +74,5 @@ public class SpawnCommand implements CommandExecutor, TabCompleter {
         // Wenn mehr als ein Argument eingegeben wird, geben Sie eine leere Liste zurück
         return new ArrayList<>();
     }
+
 }

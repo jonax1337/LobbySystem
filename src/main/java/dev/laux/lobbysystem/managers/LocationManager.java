@@ -1,4 +1,4 @@
-package dev.laux.lobbysystem.util;
+package dev.laux.lobbysystem.managers;
 
 import dev.laux.lobbysystem.LobbySystem;
 import org.bukkit.Location;

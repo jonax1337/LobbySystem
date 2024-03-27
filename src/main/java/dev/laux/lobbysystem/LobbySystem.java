@@ -1,11 +1,9 @@
 package dev.laux.lobbysystem;
 
-import dev.laux.lobbysystem.commands.CreateEasterEggCommand;
-import dev.laux.lobbysystem.commands.CreateVillagerCommand;
-import dev.laux.lobbysystem.commands.SetSpawnCommand;
+import dev.laux.lobbysystem.commands.CreateCommand;
 import dev.laux.lobbysystem.commands.SpawnCommand;
 import dev.laux.lobbysystem.listeners.*;
-import dev.laux.lobbysystem.util.LocationManager;
+import dev.laux.lobbysystem.managers.LocationManager;
 import dev.laux.lobbysystem.util.RealTimeClock;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -37,16 +35,15 @@ public final class LobbySystem extends JavaPlugin {
     private void registerEvents(PluginManager pluginManager) {
         pluginManager.registerEvents(new JoinListener(this), this);
         pluginManager.registerEvents(new ProtectionListener(), this);
-        pluginManager.registerEvents(new DoubleJumpListener(), this);
+        pluginManager.registerEvents(new DoubleJumpListener(this), this);
         pluginManager.registerEvents(new CompassListener(this), this);
         pluginManager.registerEvents(new EasterEggListener(this), this);
+        pluginManager.registerEvents(new DailyRewardVillager(), this);
     }
 
     private void registerCommands() {
-        this.getCommand("setspawn").setExecutor(new SetSpawnCommand(this));
         this.getCommand("spawn").setExecutor(new SpawnCommand(this));
-        this.getCommand("createvillager").setExecutor(new CreateVillagerCommand(this));
-        this.getCommand("createegg").setExecutor(new CreateEasterEggCommand(this));
+        this.getCommand("create").setExecutor(new CreateCommand(this));
     }
 
     public LocationManager getLocationManager() {

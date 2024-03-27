@@ -1,8 +1,7 @@
 package dev.laux.lobbysystem.listeners;
 
-import dev.laux.coins.Coins;
 import dev.laux.lobbysystem.LobbySystem;
-import dev.laux.lobbysystem.util.ItemManager;
+import dev.laux.lobbysystem.managers.ItemManager;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

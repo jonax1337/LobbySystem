@@ -1,4 +1,4 @@
-package dev.laux.lobbysystem.util;
+package dev.laux.lobbysystem.managers;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;

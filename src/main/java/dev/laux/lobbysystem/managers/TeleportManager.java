@@ -1,13 +1,8 @@
-package dev.laux.lobbysystem.util;
+package dev.laux.lobbysystem.managers;
 
-import dev.laux.lobbysystem.LobbySystem;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 public class TeleportManager {
 

@@ -1,9 +1,8 @@
 package dev.laux.lobbysystem.listeners;
 
 import dev.laux.lobbysystem.LobbySystem;
-import dev.laux.lobbysystem.util.ItemManager;
-import dev.laux.lobbysystem.util.LocationManager;
-import dev.laux.lobbysystem.util.TeleportManager;
+import dev.laux.lobbysystem.managers.ItemManager;
+import dev.laux.lobbysystem.managers.TeleportManager;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,10 +12,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.util.Vector;
 
 public class CompassListener implements Listener {
 
@@ -33,7 +30,7 @@ public class CompassListener implements Listener {
         PlayerInventory inventory = player.getInventory();;
 
         // Setze den Kompass in die Mitte der Hotbar
-        inventory.setItem(4, ItemManager.createItem(Material.CLOCK, "§e§lTeleporter"));
+        inventory.setItem(4, ItemManager.createItem(Material.CLOCK, "§eTeleporter"));
     }
 
     @EventHandler
